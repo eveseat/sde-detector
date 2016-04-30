@@ -1,2 +1,5 @@
+![SeAT](http://i.imgur.com/aPPOxSK.png)
 # sde-detector
-A simple script to detect new SDE's for import. Used to post to the eveseat slack #development channel.
+
+A simple script to detect new SDE's for import. Used to post to the eveseat slack #development channel.  
+Please use the main SeAT repository [here](https://github.com/eveseat/seat) for issues.

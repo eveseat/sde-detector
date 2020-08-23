@@ -7,7 +7,7 @@ from slacker import Slacker
 
 HASH_URL = 'https://www.fuzzwork.co.uk/dump/mysql-latest.tar.bz2.md5'
 HASH_FILE = 'hash_file'
-SLACK_API_KEY = ''
+SLACK_API_KEY = os.environ['SLACK_API_KEY']
 SLACK_CHANNEL = '#development'
 
 # Ask Fuzzworks whats the current hash
@@ -23,7 +23,9 @@ with open(hash_file, 'r') as f:
 
 # If hashes are still the same, do nothing
 if known_hash == current_hash:
-    sys.exit(1)
+    sys.exit(0)
+
+print(f'New SDE detected as {current_hash}')
 
 with open(hash_file, 'wb') as f:
     f.write(current_hash)

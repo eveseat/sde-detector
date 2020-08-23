@@ -27,7 +27,7 @@ if known_hash == current_hash:
 
 print(f'New SDE detected as {current_hash}')
 
-with open(hash_file, 'wb') as f:
+with open(hash_file, 'w') as f:
     f.write(current_hash)
 
 slack = Slacker(SLACK_API_KEY)

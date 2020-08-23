@@ -8,6 +8,6 @@ Please use the main SeAT repository [here](https://github.com/eveseat/seat) for 
 
 The container should be run as a cronjob with:
 
-```
-docker run --rm -it -e SLACK_API_KEY=FOO eveseat/sde-detector
+```bash
+docker run --rm -it -e SLACK_API_KEY=FOO -v $(pwd)/hash_file:/app/hash_file eveseat/sde-detector
 ```

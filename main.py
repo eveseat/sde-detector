@@ -25,8 +25,6 @@ with open(hash_file, 'r') as f:
 if known_hash == current_hash:
     sys.exit(0)
 
-print(f'New SDE detected as {current_hash}')
-
 with open(hash_file, 'w') as f:
     f.write(current_hash)
 

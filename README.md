@@ -8,8 +8,8 @@ Please use the main SeAT repository [here](https://github.com/eveseat/seat) for 
 
 ## running
 
-The container should be run as a cronjob with:
+The container should be run as a cronjob with something like this (use `crontab -e`):
 
 ```bash
-docker run --rm -it -e SLACK_API_KEY=FOO -v $(pwd)/hash_file:/app/hash_file eveseat/sde-detector
+docker run --rm -e SLACK_API_KEY=FOO -v $(pwd)/hash_file:/app/hash_file eveseat/sde-detector
 ```

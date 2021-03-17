@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
-import requests
 import os
 import sys
-from slacker import Slacker
+
+import requests
+from discord_webhook import DiscordWebhook, DiscordEmbed
 
 HASH_URL = 'https://www.fuzzwork.co.uk/dump/mysql-latest.tar.bz2.md5'
 HASH_FILE = 'hash_file'
-SLACK_API_KEY = os.environ['SLACK_API_KEY']
-SLACK_CHANNEL = '#development'
+WEBHOOK_URL = os.environ['WEBHOOK_URL']
 
 # Ask Fuzzworks whats the current hash
 r = requests.get(HASH_URL)
@@ -28,9 +28,10 @@ if known_hash == current_hash:
 with open(hash_file, 'w') as f:
     f.write(current_hash)
 
-slack = Slacker(SLACK_API_KEY)
-slack.chat.post_message(SLACK_CHANNEL,
-                        'Possible new SDE available at https://www.fuzzwork.co.uk/dump/ !\n' +
-                        'Old hash: {hash}\n'.format(hash=known_hash) +
-                        'New hash: {hash}'.format(hash=current_hash),
-                        username='SDE Bot')
+webhook = DiscordWebhook(url=WEBHOOK_URL)
+embed = DiscordEmbed(title='New SDE Detected',
+                     description='It looks like there is a new SDE.\n' +
+                                 f'Old hash  `{known_hash}`\n' +
+                                 f'New hash: `{current_hash}`', color='03b2f8')
+webhook.add_embed(embed)
+webhook.execute()
